@@ -1,20 +1,19 @@
-
-import React, { useState } from 'react';
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
-import { Task } from '../types/types';
-import { Edit2, Trash2, Calendar, User } from 'lucide-react';
-import { Button } from './ui/button';
-import { 
+import React, { useState } from "react";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { Task } from "../types/types";
+import { Edit2, Trash2, Calendar, User } from "lucide-react";
+import { Button } from "./ui/button";
+import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from './ui/dialog';
-import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
-import { Label } from './ui/label';
+} from "./ui/dialog";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { Label } from "./ui/label";
 
 interface TaskCardProps {
   task: Task;
@@ -22,10 +21,16 @@ interface TaskCardProps {
   onDelete: () => void;
 }
 
-export const TaskCard: React.FC<TaskCardProps> = ({ task, onUpdate, onDelete }) => {
+export const TaskCard: React.FC<TaskCardProps> = ({
+  task,
+  onUpdate,
+  onDelete,
+}) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editTitle, setEditTitle] = useState(task.title);
-  const [editDescription, setEditDescription] = useState(task.description || '');
+  const [editDescription, setEditDescription] = useState(
+    task.description || ""
+  );
 
   const {
     attributes,
@@ -46,7 +51,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onUpdate, onDelete }) 
 
   const handleSave = () => {
     onUpdate(task.id, {
-      title: editTitle.trim() || 'Untitled Task',
+      title: editTitle.trim() || "Untitled Task",
       description: editDescription.trim(),
     });
     setIsDialogOpen(false);
@@ -54,14 +59,14 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onUpdate, onDelete }) 
 
   const handleCancel = () => {
     setEditTitle(task.title);
-    setEditDescription(task.description || '');
+    setEditDescription(task.description || "");
     setIsDialogOpen(false);
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
+    return new Date(dateString).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
     });
   };
 
@@ -86,9 +91,9 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onUpdate, onDelete }) 
                 </Button>
               </DialogTrigger>
             </Dialog>
-            <Button 
-              variant="ghost" 
-              size="sm" 
+            <Button
+              variant="ghost"
+              size="sm"
               className="h-6 w-6 p-0 text-red-500 hover:text-red-600"
               onClick={(e) => {
                 e.stopPropagation();
@@ -150,9 +155,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onUpdate, onDelete }) 
               <Button variant="outline" onClick={handleCancel}>
                 Cancel
               </Button>
-              <Button onClick={handleSave}>
-                Save Changes
-              </Button>
+              <Button onClick={handleSave}>Save Changes</Button>
             </div>
           </div>
         </DialogContent>

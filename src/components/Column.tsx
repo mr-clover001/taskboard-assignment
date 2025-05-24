@@ -1,19 +1,22 @@
-
-import React, { useState } from 'react';
-import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
-import { useDroppable } from '@dnd-kit/core';
-import { TaskCard } from './TaskCard';
-import { Task } from '../types/types';
-import { Plus, MoreHorizontal, Trash2, Edit2 } from 'lucide-react';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger 
-} from './ui/dropdown-menu';
+import React, { useState } from "react";
+import {
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { useDroppable } from "@dnd-kit/core";
+import { TaskCard } from "./TaskCard";
+import { Task } from "../types/types";
+import { Plus, MoreHorizontal, Trash2, Edit2 } from "lucide-react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 interface ColumnProps {
   column: {
@@ -70,9 +73,9 @@ export const Column: React.FC<ColumnProps> = ({
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleTitleSubmit();
-    } else if (e.key === 'Escape') {
+    } else if (e.key === "Escape") {
       setEditTitle(column.title);
       setIsEditingTitle(false);
     }
@@ -98,7 +101,7 @@ export const Column: React.FC<ColumnProps> = ({
               autoFocus
             />
           ) : (
-            <h3 
+            <h3
               className="text-lg font-semibold text-gray-800 cursor-pointer hover:text-blue-600 transition-colors"
               onClick={() => setIsEditingTitle(true)}
               {...listeners}
@@ -121,7 +124,7 @@ export const Column: React.FC<ColumnProps> = ({
                   <Edit2 className="h-4 w-4 mr-2" />
                   Rename
                 </DropdownMenuItem>
-                <DropdownMenuItem 
+                <DropdownMenuItem
                   onClick={onDeleteColumn}
                   className="text-red-600 hover:text-red-700"
                 >
@@ -139,7 +142,10 @@ export const Column: React.FC<ColumnProps> = ({
         ref={setDroppableRef}
         className="p-4 space-y-3 min-h-[200px] max-h-[calc(100vh-300px)] overflow-y-auto"
       >
-        <SortableContext items={tasks.map(task => task.id)} strategy={verticalListSortingStrategy}>
+        <SortableContext
+          items={tasks.map((task) => task.id)}
+          strategy={verticalListSortingStrategy}
+        >
           {tasks.map((task) => (
             <TaskCard
               key={task.id}
