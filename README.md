@@ -1,106 +1,171 @@
-Setup and Run Instructions
-Prerequisites
-Node.js (v16 or higher)
-npm or yarn package manager
-Installation & Running
-Clone/Download the project
-Install dependencies:
+# 🧩 Real-Time Collaborative Task Board
 
+A Trello-like real-time task board built with React and drag-and-drop functionality.
+
+## Vercel Link : https://taskboard-assignment-tau.vercel.app/
+
+## 🚀 Setup and Run Instructions
+
+### 🛠 Prerequisites
+
+- [Node.js](https://nodejs.org/) (v16 or higher)
+- npm or yarn package manager
+
+### 📦 Installation & Running
+
+1. **Clone/Download the project**
+
+```bash
+git clone <your-repo-url>
+cd <your-project-directory>
+```
+
+2. **Install dependencies**
+
+```bash
 npm install
-Start the development server:
+# or
+yarn install
+```
 
-npm run dev
-Open your browser and navigate to http://localhost:5173
-Available Scripts
-npm run dev - Start development server
-npm run build - Build for production
-npm run preview - Preview production build
-Real-Time Architecture and Data Flow
-Current Architecture
-The application uses a client-side state management approach with the following components:
+3. **Start the development server**
 
-Data Flow:
-State Management: React's useState hooks manage all application state locally in the TaskBoard component
+```bash
+npm start
+# or
+yarn dev
+```
 
-Component Hierarchy:
+4. **Open your browser and navigate to**
 
+```
+http://localhost:5173
+```
+
+---
+
+## 📜 Available Scripts
+
+| Command           | Description              |
+| ----------------- | ------------------------ |
+| `npm run dev`     | Start development server |
+| `npm run build`   | Build for production     |
+| `npm run preview` | Preview production build |
+
+---
+
+## 🧠 Real-Time Architecture and Data Flow
+
+### ✅ Current Architecture
+
+The application uses a **client-side** state management approach with the following structure:
+
+#### 🔁 Data Flow
+
+- **State Management**: Managed using React’s `useState` hooks inside the `TaskBoard` component.
+
+#### 🧱 Component Hierarchy
+
+```
 TaskBoard (main state container)
 ├── Column components (receive props, emit events)
 └── TaskCard components (receive props, emit events)
-Event Flow:
+```
 
-User interactions (drag/drop, edit, delete) trigger event handlers
-Event handlers update the centralized state
-State changes trigger React re-renders
-UI updates reflect the new state
-Key Technologies:
-React - Component framework and state management
-@dnd-kit - Drag and drop functionality
-Tailwind CSS - Styling
-shadcn/ui - UI component library
-UUID - Unique ID generation
-Real-Time Capabilities (Current Limitations)
-Currently, this is NOT a real-time collaborative application. Each user session maintains its own independent state. Changes made by one user are not visible to other users.
+#### ⚙️ Event Flow
 
-Tradeoffs and Limitations
-Current Limitations:
-No Real-Time Collaboration:
+- User interactions (drag/drop, edit, delete) → Trigger event handlers
+- Event handlers → Update centralized state
+- State change → Triggers React re-render
+- UI → Updates based on new state
 
-Each user has their own isolated state
-No synchronization between different browser sessions
-"Online users" indicator is mock data
-No Data Persistence:
+#### 🔑 Key Technologies
 
-All data is lost when the page is refreshed
-No database or local storage implementation
-Client-Side Only:
+- **React** – Component framework and state handling
+- **@dnd-kit** – Drag-and-drop functionality
+- **Tailwind CSS** – Styling
+- **shadcn/ui** – UI components
+- **UUID** – Unique ID generation
 
-No backend API
-No user authentication
-No data validation on the server side
-Scalability Concerns:
+---
 
-All state management happens in a single component (TaskBoard.tsx is 273+ lines)
-No optimized rendering for large datasets
-No virtual scrolling for many tasks
-Limited Functionality:
+## ❌ Real-Time Capabilities (Current Limitations)
 
-No task assignment to users
-No due dates or priority levels
-No task history or audit trail
-No file attachments
-To Make It Truly Real-Time, You Would Need:
-Backend Infrastructure:
+> ⚠️ This project is currently **NOT** a real-time collaborative application.
 
-WebSocket server or Server-Sent Events
-Database (PostgreSQL, MongoDB, etc.)
-Real-time synchronization service
-Recommended Approach with Lovable:
+- Each user session has **independent local state**
+- Changes **do not sync** across users or tabs
+- “Online users” indicator is **mock data**
 
-Supabase Integration (click the green Supabase button in the top-right)
-This would provide:
-Real-time database with PostgreSQL
-Built-in authentication
-Real-time subscriptions
-Row Level Security (RLS)
-State Management Improvements:
+---
 
-Move to a more scalable state management solution
-Implement optimistic updates
-Add conflict resolution for simultaneous edits
-Current Strengths:
-Great User Experience:
+## ⚖️ Tradeoffs and Limitations
 
-Smooth drag and drop interactions
-Responsive design
-Clean, modern UI
-Solid Foundation:
+### ❗ Current Limitations
 
-Well-structured React components
-TypeScript for type safety
-Modular component architecture
-Easy to Extend:
+- **No Real-Time Collaboration**:
 
-Clear separation of concerns
-Reusable UI components
-Consistent coding patterns
+  - No state sharing across browser tabs or devices
+
+- **No Data Persistence**:
+
+  - Page refresh results in data loss
+  - No database or local storage used
+
+- **Client-Side Only**:
+
+  - No backend/API integration
+  - No authentication or validation
+
+- **Scalability**:
+
+  - Centralized state in a single component (`TaskBoard.tsx` ~273+ lines)
+  - No optimization for large data sets
+  - No virtual scrolling for performance
+
+- **Feature Gaps**:
+  - No user assignment or due dates
+  - No priority, history, audit logs
+  - No file attachments
+
+---
+
+## 💡 To Make It Truly Real-Time
+
+### 🔌 Backend Infrastructure Needed
+
+- WebSocket server or Server-Sent Events
+- Real-time database (e.g., PostgreSQL, MongoDB)
+- Optional: Supabase or Firebase
+
+### ✅ Recommended Stack (Supabase)
+
+- Real-time PostgreSQL DB
+- Built-in user authentication
+- Real-time subscriptions
+- Row Level Security (RLS)
+
+### 📈 State Management Enhancements
+
+- Adopt a scalable store (e.g., Zustand, Redux)
+- Implement **optimistic updates**
+- Add **conflict resolution** for concurrent edits
+
+---
+
+## 🌟 Current Strengths
+
+- **Great UX**:
+
+  - Smooth drag-and-drop
+  - Responsive and modern UI
+
+- **Solid Codebase**:
+
+  - Well-structured components
+  - TypeScript-enabled
+  - Modular architecture
+
+- **Easy to Extend**:
+  - Reusable components
+  - Clean and maintainable patterns
